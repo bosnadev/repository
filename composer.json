@@ -1,0 +1,38 @@
+{
+  "name": "bosnadev/repository",
+  "description": "Laravel Repository",
+  "keywords": [
+    "laravel",
+    "repository",
+    "eloquent",
+    "database"
+  ],
+  "licence": "MIT",
+  "authors": [
+    {
+      "name": "Mirza Pasic",
+      "email": "mirza.pasic@edu.fit.ba"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bosnadev\\Repository\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bosnadev\\Tests\\Repository\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
