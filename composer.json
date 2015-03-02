@@ -1,9 +1,10 @@
 {
-  "name": "bosnadev/repository",
-  "description": "Laravel Repository",
+  "name": "bosnadev/repositories",
+  "description": "Laravel Repositories",
   "keywords": [
     "laravel",
     "repository",
+    "repositories",
     "eloquent",
     "database"
   ],
@@ -16,16 +17,17 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/support": "5.*"
+    "illuminate/support": "5.*",
+    "illuminate/database": "5.*"
   },
   "autoload": {
     "psr-4": {
-      "Bosnadev\\Repository\\": "src/"
+      "Bosnadev\\Repositories\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Bosnadev\\Tests\\Repository\\": "tests/"
+      "Bosnadev\\Tests\\Repositories\\": "tests/"
     }
   },
   "extra": {
