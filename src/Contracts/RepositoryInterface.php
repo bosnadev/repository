@@ -14,9 +14,10 @@ interface RepositoryInterface {
 
     /**
      * @param array $data
+     * @param $id
      * @return mixed
      */
-    public function update(array $data);
+    public function update(array $data, $id);
 
     /**
      * @param $id

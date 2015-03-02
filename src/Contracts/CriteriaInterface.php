@@ -9,9 +9,9 @@ use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 interface CriteriaInterface {
 
     /**
-     * @param $query
+     * @param $model
      * @param RepositoryInterface $repository
      * @return mixed
      */
-    public function apply($query, Repository $repository);
+    public function apply($model, Repository $repository);
 }

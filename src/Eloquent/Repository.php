@@ -23,11 +23,6 @@ abstract class Repository implements RepositoryInterface {
     protected $criteria;
 
     /**
-     * @var
-     */
-    protected $query;
-
-    /**
      * @var bool
      */
     protected $skipCriteria = false;
@@ -48,27 +43,24 @@ abstract class Repository implements RepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function create(array $data)
-    {
-        // TODO: Implement create() method.
+    public function create(array $data) {
+        return $this->model->create($data);
     }
 
     /**
      * @param array $data
      * @return mixed
      */
-    public function update(array $data)
-    {
-        // TODO: Implement update() method.
+    public function update(array $data, $id) {
+        return $this->model->where('id', '=', $id)->update($data);
     }
 
     /**
      * @param $id
      * @return mixed
      */
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
+    public function delete($id) {
+        return $this->model->destroy($id);
     }
 
     /**
@@ -76,9 +68,9 @@ abstract class Repository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function find($id, $columns = array('*'))
-    {
-        // TODO: Implement find() method.
+    public function find($id, $columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->find($id, $columns);
     }
 
     /**
@@ -87,28 +79,24 @@ abstract class Repository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function findBy($field, $value, $columns = array('*'))
-    {
-        // TODO: Implement findBy() method.
+    public function findBy($field, $value, $columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->where($field, '=', $value)->first();
     }
 
     /**
      * @param array $columns
      * @return mixed
      */
-    public function all($columns = array('*'))
-    {
+    public function all($columns = array('*')) {
         $this->applyCriteria();
-
-        return $this->query->get($columns);
+        return $this->model->get($columns);
     }
-
 
     /**
      * @return $this
      */
     public function resetScope() {
-        $this->query = $this->model;
         $this->skipCriteria(false);
         return $this;
     }
@@ -134,8 +122,7 @@ abstract class Repository implements RepositoryInterface {
      * @return $this
      */
     public function getByCriteria(Criteria $criteria) {
-        $this->query = $criteria->apply($this->query, $this);
-
+        $this->model = $criteria->apply($this->model, $this);
         return $this;
     }
 
@@ -145,7 +132,6 @@ abstract class Repository implements RepositoryInterface {
      */
     public function pushCriteria(Criteria $criteria) {
         $this->criteria->push($criteria);
-
         return $this;
     }
 
@@ -159,7 +145,7 @@ abstract class Repository implements RepositoryInterface {
 
         foreach($this->getCriteria() as $criteria) {
             if($criteria instanceof Criteria)
-                $this->query = $criteria->apply($this->query, $this);
+                $this->model = $criteria->apply($this->model, $this);
         }
 
         return $this;
