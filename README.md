@@ -76,7 +76,7 @@ And finally, use repository in the controller:
 
 The following methods are available:
 
-### Bosnadev\Repositories\Contracts\RepositoryInterface
+##### Bosnadev\Repositories\Contracts\RepositoryInterface
 
 * public function create(array $data)
 * public function update(array $data, $id)
@@ -85,7 +85,7 @@ The following methods are available:
 * public function findBy($field, $value, $columns = array('*'))
 * public function all($columns = array('*'))
 
-### Bosnadev\Repositories\Contracts\CriteriaInterface
+##### Bosnadev\Repositories\Contracts\CriteriaInterface
 
 * public function apply($model, Repository $repository)
 
