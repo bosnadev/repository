@@ -81,7 +81,7 @@ abstract class Repository implements RepositoryInterface {
      */
     public function findBy($field, $value, $columns = array('*')) {
         $this->applyCriteria();
-        return $this->model->where($field, '=', $value)->first();
+        return $this->model->where($field, '=', $value)->first($columns);
     }
 
     /**
