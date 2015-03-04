@@ -34,7 +34,7 @@ First, create your repository class. Note that your repository class MUST extend
         protected $modelClassName = 'App\Film';
     }
 
-```$modelClassName``` property is used to tell repository what Eloquent Model to use inside Repository class. Now, create ```App\Film``` model:
+```$modelClassName``` property is used to tell repository which Eloquent Model to use inside Repository class. Now, create ```App\Film``` model:
 
     <?php namespace App;
     
@@ -51,7 +51,7 @@ First, create your repository class. Note that your repository class MUST extend
         ];
     }
     
-And finally, use repository in the controller:
+And finally, use the repository in the controller:
 
     <?php namespace App\Http\Controllers;
     
