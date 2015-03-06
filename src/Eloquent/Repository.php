@@ -120,7 +120,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @return Model
+     * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
     public function makeModel() {
