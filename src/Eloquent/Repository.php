@@ -2,8 +2,9 @@
 
 use Bosnadev\Repositories\Contracts\CriteriaInterface as Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
-use Bosnadev\Repositories\Traits\ModelTrait;
+use Bosnadev\Repositories\Exceptions\RepositoryException;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container as App;
 
@@ -13,9 +14,22 @@ use Illuminate\Container\Container as App;
  */
 abstract class Repository implements RepositoryInterface {
 
-    use ModelTrait {
-        ModelTrait::__construct as private __mtConstruct;
-    }
+    /**
+     * Full class name of the Eloquent Model
+     *
+     * @var null
+     */
+    protected $modelClassName = null;
+
+    /**
+     * @var App
+     */
+    private $app;
+
+    /**
+     * @var
+     */
+    protected $model;
 
     /**
      * @var Collection
@@ -29,13 +43,12 @@ abstract class Repository implements RepositoryInterface {
 
     /**
      * @param App $app
+     * @param Collection $collection
      * @throws \Bosnadev\Repositories\Exceptions\RepositoryException
      */
-    public function __construct(App $app) {
-        $this->__mtConstruct($app);
-
-        $this->model = $this->newModelInstance();
-        $this->criteria = new Collection();
+    public function __construct(App $app, Collection $collection) {
+        $this->app = $app;
+        $this->criteria = $collection;
         $this->resetScope();
     }
 
@@ -49,10 +62,12 @@ abstract class Repository implements RepositoryInterface {
 
     /**
      * @param array $data
+     * @param $id
+     * @param string $attribute
      * @return mixed
      */
-    public function update(array $data, $id) {
-        return $this->model->where('id', '=', $id)->update($data);
+    public function update(array $data, $id, $attribute="id") {
+        return $this->model->where($attribute, '=', $id)->update($data);
     }
 
     /**
@@ -74,14 +89,14 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param $field
+     * @param $attribute
      * @param $value
      * @param array $columns
      * @return mixed
      */
-    public function findBy($field, $value, $columns = array('*')) {
+    public function findBy($attribute, $value, $columns = array('*')) {
         $this->applyCriteria();
-        return $this->model->where($field, '=', $value)->first($columns);
+        return $this->model->where($attribute, '=', $value)->first($columns);
     }
 
     /**
@@ -91,6 +106,30 @@ abstract class Repository implements RepositoryInterface {
     public function all($columns = array('*')) {
         $this->applyCriteria();
         return $this->model->get($columns);
+    }
+
+    /**
+     * @param $modelClassName
+     * @return $this
+     * @throws RepositoryException
+     */
+    public function setModelClassName($modelClassName) {
+        $this->modelClassName = $modelClassName;
+        $this->makeModel();
+        return $this;
+    }
+
+    /**
+     * @return Model
+     * @throws RepositoryException
+     */
+    public function makeModel() {
+        $model = $this->app->make($this->modelClassName);
+
+        if (!$model instanceof Model)
+            throw new RepositoryException("Class {$this->modelClassName} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+
+        return $this->model = $model;
     }
 
     /**
@@ -139,7 +178,6 @@ abstract class Repository implements RepositoryInterface {
      * @return $this
      */
     public function  applyCriteria() {
-
         if($this->skipCriteria === true)
             return $this;
 

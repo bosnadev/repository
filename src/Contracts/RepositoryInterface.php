@@ -7,6 +7,12 @@
 interface RepositoryInterface {
 
     /**
+     * @param $model
+     * @return mixed
+     */
+    public function setModelClassName($model);
+    
+    /**
      * @param array $data
      * @return mixed
      */
