@@ -22,19 +22,21 @@ then run ```composer update```
  
 ## Usage
  
-First, create your repository class. Note that your repository class MUST extend ```Bosnadev\Repositories\Eloquent\Repository```:
+First, create your repository class. Note that your repository class MUST extend ```Bosnadev\Repositories\Eloquent\Repository``` and implement model() method
 
     <?php namespace App\Repositories;
 
     use Bosnadev\Repositories\Contracts\RepositoryInterface;
     use Bosnadev\Repositories\Eloquent\Repository;
 
-    class FilmsRepository extends Repository implements RepositoryInterface {
+    class FilmsRepository extends Repository {
 
-        protected $modelClassName = 'App\Film';
+        public function model() {
+            return 'App\Film';
+        }
     }
 
-```$modelClassName``` property is used to tell repository what Eloquent Model to use inside Repository class. Now, create ```App\Film``` model:
+By implementing ```model()``` method you telling repository what model class you want to use. Now, create ```App\Film``` model:
 
     <?php namespace App;
     
