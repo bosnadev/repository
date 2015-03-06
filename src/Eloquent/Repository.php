@@ -15,13 +15,6 @@ use Illuminate\Container\Container as App;
 abstract class Repository implements RepositoryInterface {
 
     /**
-     * Full class name of the Eloquent Model
-     *
-     * @var null
-     */
-    protected $modelClassName = null;
-
-    /**
      * @var App
      */
     private $app;
@@ -50,6 +43,33 @@ abstract class Repository implements RepositoryInterface {
         $this->app = $app;
         $this->criteria = $collection;
         $this->resetScope();
+        $this->makeModel();
+    }
+
+    /**
+     * Specify Model class name
+     *
+     * @return mixed
+     */
+    abstract function model();
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function all($columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->get($columns);
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @return mixed
+     */
+    public function paginate($perPage = 1, $columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->paginate($perPage, $columns);
     }
 
     /**
@@ -100,36 +120,16 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param array $columns
-     * @return mixed
-     */
-    public function all($columns = array('*')) {
-        $this->applyCriteria();
-        return $this->model->get($columns);
-    }
-
-    /**
-     * @param $modelClassName
-     * @return $this
-     * @throws RepositoryException
-     */
-    public function setModelClassName($modelClassName) {
-        $this->modelClassName = $modelClassName;
-        $this->makeModel();
-        return $this;
-    }
-
-    /**
      * @return Model
      * @throws RepositoryException
      */
     public function makeModel() {
-        $model = $this->app->make($this->modelClassName);
+        $model = $this->app->make($this->model());
 
         if (!$model instanceof Model)
             throw new RepositoryException("Class {$this->modelClassName} must be an instance of Illuminate\\Database\\Eloquent\\Model");
 
-        return $this->model = $model;
+        return $this->model = $model->newQuery();
     }
 
     /**

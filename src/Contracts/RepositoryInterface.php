@@ -7,10 +7,17 @@
 interface RepositoryInterface {
 
     /**
-     * @param $model
+     * @param array $columns
      * @return mixed
      */
-    public function setModelClassName($model);
+    public function all($columns = array('*'));
+
+    /**
+     * @param $perPage
+     * @param array $columns
+     * @return mixed
+     */
+    public function paginate($perPage = 1, $columns = array('*'));
     
     /**
      * @param array $data
@@ -46,9 +53,4 @@ interface RepositoryInterface {
      */
     public function findBy($field, $value, $columns = array('*'));
 
-    /**
-     * @param array $columns
-     * @return mixed
-     */
-    public function all($columns = array('*'));
 }
