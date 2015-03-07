@@ -22,19 +22,21 @@ then run ```composer update```
  
 ## Usage
  
-First, create your repository class. Note that your repository class MUST extend ```Bosnadev\Repositories\Eloquent\Repository```:
+First, create your repository class. Note that your repository class MUST extend ```Bosnadev\Repositories\Eloquent\Repository``` and implement model() method
 
     <?php namespace App\Repositories;
 
     use Bosnadev\Repositories\Contracts\RepositoryInterface;
     use Bosnadev\Repositories\Eloquent\Repository;
 
-    class FilmsRepository extends Repository implements RepositoryInterface {
+    class FilmsRepository extends Repository {
 
-        protected $modelClassName = 'App\Film';
+        public function model() {
+            return 'App\Film';
+        }
     }
 
-```$modelClassName``` property is used to tell repository which Eloquent Model to use inside Repository class. Now, create ```App\Film``` model:
+By implementing ```model()``` method you telling repository what model class you want to use. Now, create ```App\Film``` model:
 
     <?php namespace App;
     
@@ -78,12 +80,13 @@ The following methods are available:
 
 ##### Bosnadev\Repositories\Contracts\RepositoryInterface
 
+* public function all($columns = array('*'))
+* public function paginate($perPage = 1, $columns = array('*'));
 * public function create(array $data)
 * public function update(array $data, $id)
 * public function delete($id)
 * public function find($id, $columns = array('*'))
 * public function findBy($field, $value, $columns = array('*'))
-* public function all($columns = array('*'))
 
 ##### Bosnadev\Repositories\Contracts\CriteriaInterface
 

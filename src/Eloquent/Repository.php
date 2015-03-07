@@ -51,7 +51,7 @@ abstract class Repository implements RepositoryInterface {
      *
      * @return mixed
      */
-    abstract function model();
+    public abstract function model();
 
     /**
      * @param array $columns
@@ -120,7 +120,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @return Model
+     * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
     public function makeModel() {
