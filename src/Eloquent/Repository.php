@@ -1,6 +1,7 @@
 <?php namespace Bosnadev\Repositories\Eloquent;
 
-use Bosnadev\Repositories\Contracts\CriteriaInterface as Criteria;
+use Bosnadev\Repositories\Contracts\CriteriaInterface;
+use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Exceptions\RepositoryException;
 
@@ -12,7 +13,7 @@ use Illuminate\Container\Container as App;
  * Class Repository
  * @package Bosnadev\Repositories\Eloquent
  */
-abstract class Repository implements RepositoryInterface {
+abstract class Repository implements RepositoryInterface, CriteriaInterface {
 
     /**
      * @var App
@@ -127,7 +128,7 @@ abstract class Repository implements RepositoryInterface {
         $model = $this->app->make($this->model());
 
         if (!$model instanceof Model)
-            throw new RepositoryException("Class {$this->modelClassName} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
 
         return $this->model = $model->newQuery();
     }
