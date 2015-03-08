@@ -1,6 +1,6 @@
 <?php namespace Bosnadev\Repositories\Contracts;
 
-use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
+use Bosnadev\Repositories\Criteria\Criteria;
 
 /**
  * Interface CriteriaInterface
@@ -9,9 +9,30 @@ use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 interface CriteriaInterface {
 
     /**
-     * @param $model
-     * @param RepositoryInterface $repository
+     * @param bool $status
+     * @return $this
+     */
+    public function skipCriteria($status = true);
+
+    /**
      * @return mixed
      */
-    public function apply($model, Repository $repository);
+    public function getCriteria();
+
+    /**
+     * @param Criteria $criteria
+     * @return $this
+     */
+    public function getByCriteria(Criteria $criteria);
+
+    /**
+     * @param Criteria $criteria
+     * @return $this
+     */
+    public function pushCriteria(Criteria $criteria);
+
+    /**
+     * @return $this
+     */
+    public function  applyCriteria();
 }
