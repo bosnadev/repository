@@ -130,7 +130,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
         if (!$model instanceof Model)
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
 
-        return $this->model = $model->newQuery();
+        return $this->model = $model;
     }
 
     /**
