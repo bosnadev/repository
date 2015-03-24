@@ -64,6 +64,16 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     }
 
     /**
+     * @param  string $value
+     * @param  string $key
+     * @return array
+     */
+    public function lists($value, $key = null) {
+        $this->applyCriteria();
+        return $this->model->lists($value, $key);
+    }
+
+    /**
      * @param int $perPage
      * @param array $columns
      * @return mixed
