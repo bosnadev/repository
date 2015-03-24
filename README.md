@@ -81,6 +81,7 @@ The following methods are available:
 ##### Bosnadev\Repositories\Contracts\RepositoryInterface
 
 * public function all($columns = array('*'))
+* public function lists($value, $key = null)
 * public function paginate($perPage = 1, $columns = array('*'));
 * public function create(array $data)
 * public function update(array $data, $id)
