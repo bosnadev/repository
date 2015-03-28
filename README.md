@@ -144,11 +144,11 @@ Here is a simple criteria:
 ```php
 <?php namespace App\Repositories\Criteria\Films;
 
-use Bosnadev\Repositories\Contracts\CriteriaInterface;
+use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 
-class LengthOverTwoHours implements CriteriaInterface {
+class LengthOverTwoHours extends Criteria {
 
     /**
      * @param $model
