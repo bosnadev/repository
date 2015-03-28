@@ -137,7 +137,7 @@ $this->film->find($id, ['title', 'description', 'release_date']);
 
 ## Criteria
 
-Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST implement ```Bosnadev\Repositories\Contracts\CriteriaInterface``` interface.
+Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST extend the abstract ```Bosnadev\Repositories\Criteria\Criteria``` class.
 
 Here is a simple criteria:
 
