@@ -102,6 +102,19 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     }
 
     /**
+     * @param  array  $data
+     * @param  $id
+     * @return mixed
+     */
+    public function updateRich(array $data, $id) {
+        if (!($model = $this->model->find($id))) {
+            return false;
+        }
+
+        return $model->fill($data)->save();
+    }
+
+    /**
      * @param $id
      * @return mixed
      */
