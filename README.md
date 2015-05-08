@@ -94,6 +94,8 @@ public function update(array $data, $id)
 public function delete($id)
 public function find($id, $columns = array('*'))
 public function findBy($field, $value, $columns = array('*'))
+public function findAllBy($field, $value, $columns = array('*'))
+public function findWhere($where, $columns = array('*'))
 ```
 
 ##### Bosnadev\Repositories\Contracts\CriteriaInterface
@@ -133,6 +135,26 @@ you can also chose what columns to fetch:
 
 ```php
 $this->film->find($id, ['title', 'description', 'release_date']);
+```
+
+Get a single row by a single column criteria.
+
+```php
+$this->film->findBy('title', $title);
+```
+
+Or you can get all rows by a single column criteria.
+```php
+$this->film->findAllBy('author_id', $author_id]);
+```
+
+Get all results by multiples fields
+
+```php
+$this->film->findWhere([
+    'author_id' => $author_id,
+    ['year','>',$year]
+]);
 ```
 
 ## Criteria
