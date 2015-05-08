@@ -144,6 +144,38 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     }
 
     /**
+     * @param $attribute
+     * @param $value
+     * @param array $columns
+     * @return mixed
+     */
+    public function findAllBy($attribute, $value, $columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->where($attribute, '=', $value)->get($columns);
+    }
+
+    /**
+     * @param array $where
+     * @param array $columns
+     * @return mixed
+     */
+    public function findWhere($where, $columns = array('*'))
+    {
+        $this->applyCriteria();
+
+        foreach($where as $field => $value) {
+            if(is_array($value)) {
+                list($field, $condition, $value) = $value;
+                $this->model->where($field,$condition,$value);
+            } else {
+                $this->model->where($field,'=',$value);
+            }
+        }
+
+        return $this->model->get($columns);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
