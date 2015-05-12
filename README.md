@@ -168,7 +168,6 @@ Here is a simple criteria:
 
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
-use Bosnadev\Repositories\Contracts\RepositoryInterface;
 
 class LengthOverTwoHours extends Criteria {
 
