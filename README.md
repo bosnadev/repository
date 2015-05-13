@@ -10,18 +10,18 @@ Run the following command from you terminal:
  ```bash
  composer require "bosnadev/repositories: 0.*"
  ```
- 
+
 or add this to require section in your composer.json file:
- 
+
  ```
  "bosnadev/repositories": "0.*"
  ```
- 
+
 then run ```composer update```
- 
- 
+
+
 ## Usage
- 
+
 First, create your repository class. Note that your repository class MUST extend ```Bosnadev\Repositories\Eloquent\Repository``` and implement model() method
 
 ```php
@@ -77,7 +77,7 @@ class FilmsController extends Controller {
         return \Response::json($this->film->all());
     }
 }
-``` 
+```
 
 ## Available Methods
 
@@ -121,7 +121,7 @@ $this->film->update(Input::all(), $film_id);
 
 Delete film:
 
-```php    
+```php
 $this->film->delete($id);
 ```
 
@@ -145,10 +145,10 @@ $this->film->findBy('title', $title);
 
 Or you can get all rows by a single column criteria.
 ```php
-$this->film->findAllBy('author_id', $author_id]);
+$this->film->findAllBy('author_id', $author_id);
 ```
 
-Get all results by multiples fields
+Get all results by multiple fields
 
 ```php
 $this->film->findWhere([
@@ -168,7 +168,6 @@ Here is a simple criteria:
 
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
-use Bosnadev\Repositories\Contracts\RepositoryInterface;
 
 class LengthOverTwoHours extends Criteria {
 
