@@ -210,3 +210,8 @@ class FilmsController extends Controller {
     }
 }
 ```
+
+
+## Credits
+
+This package is largely inspired by [this](https://github.com/prettus/l5-repository) great package by @andersao. [Here](https://github.com/anlutro/laravel-repository/) is another package I used as reference.
