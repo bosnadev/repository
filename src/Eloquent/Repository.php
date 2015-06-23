@@ -70,7 +70,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
      */
     public function lists($value, $key = null) {
         $this->applyCriteria();
-        return $this->model->lists($value, $key);
+        return $this->model->lists($value, $key)->all();
     }
 
     /**
