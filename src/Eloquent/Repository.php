@@ -159,24 +159,44 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     }
 
     /**
+     * Find a collection of models by the given query conditions.
+     *
      * @param array $where
      * @param array $columns
-     * @return mixed
+     * @param bool  $or
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|null
      */
-    public function findWhere($where, $columns = array('*'))
+    public function findWhere($where, $columns = ['*'], $or = false)
     {
         $this->applyCriteria();
 
-        foreach($where as $field => $value) {
-            if(is_array($value)) {
-                list($field, $condition, $value) = $value;
-                $this->model->where($field,$condition,$value);
+        $model = $this->model;
+
+        foreach ($where as $field => $value) {
+            if ($value instanceof \Closure) {
+                $model = (! $or)
+                    ? $model->where($value)
+                    : $model->orWhere($value);
+            } elseif (is_array($value)) {
+                if (count($value) === 3) {
+                    list($field, $operator, $search) = $value;
+                    $model = (! $or)
+                        ? $model->where($field, $operator, $search)
+                        : $model->orWhere($field, $operator, $search);
+                } elseif (count($value) === 2) {
+                    list($field, $search) = $value;
+                    $model = (! $or)
+                        ? $model->where($field, '=', $search)
+                        : $model->orWhere($field, '=', $search);
+                }
             } else {
-                $this->model->where($field,'=',$value);
+                $model = (! $or)
+                    ? $model->where($field, '=', $value)
+                    : $model->orWhere($field, '=', $value);
             }
         }
-
-        return $this->model->get($columns);
+        return $model->get($columns);
     }
 
     /**
@@ -237,7 +257,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     /**
      * @return $this
      */
-    public function  applyCriteria() {
+    public function applyCriteria() {
         if($this->skipCriteria === true)
             return $this;
 
