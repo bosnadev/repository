@@ -1,0 +1,23 @@
+<?php namespace criteria_namespace;
+
+use Bosnadev\Repositories\Criteria\Criteria;
+use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
+
+/**
+ * Class criteria_class
+ *
+ * @package criteria_namespace
+ */
+class criteria_class extends Criteria {
+
+    /**
+     * @param            $model
+     * @param Repository $repository
+     *
+     * @return mixed
+     */
+    public function apply($model, Repository $repository)
+    {
+        return $model;
+    }
+}

@@ -2,8 +2,11 @@
 
 namespace Bosnadev\Repositories\Providers;
 
+use Bosnadev\Repositories\Console\Commands\Creators\RepositoryCreator;
 use Bosnadev\Repositories\Console\Commands\MakeCriteriaCommand;
 use Bosnadev\Repositories\Console\Commands\MakeRepositoryCommand;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Filesystem\FilesystemServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -20,6 +23,7 @@ class RepositoryProvider extends ServiceProvider
      */
     protected $defer = true;
 
+
     /**
      * Bootstrap the application services.
      *
@@ -27,7 +31,14 @@ class RepositoryProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Config path.
+        $config_path = __DIR__ . '/../config/repositories.php';
+
+        // Publish config.
+        $this->publishes(
+            [$config_path => config_path('repositories.php')],
+            'repositories'
+        );
     }
 
     /**
@@ -37,10 +48,20 @@ class RepositoryProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register make repository command.
         $this->registerMakeRepositoryCommand();
+
+        // Register make criteria command.
         $this->registerMakeCriteriaCommand();
 
-        $this->commands(['command.repository.make', 'command.criteria.make']);
+        // Config path.
+        $config_path = __DIR__ . '/../config/repositories.php';
+
+        // Merge config.
+        $this->mergeConfigFrom(
+            $config_path,
+            'repositories'
+        );
     }
 
     /**
@@ -48,10 +69,8 @@ class RepositoryProvider extends ServiceProvider
      */
     protected function registerMakeRepositoryCommand()
     {
-        $this->app->singleton('command.repository.make', function()
-        {
-            return new MakeRepositoryCommand();
-        });
+        // Make repository command.
+        $this->commands('Bosnadev\Repositories\Console\Commands\MakeRepositoryCommand');
     }
 
     /**
@@ -59,19 +78,7 @@ class RepositoryProvider extends ServiceProvider
      */
     protected function registerMakeCriteriaCommand()
     {
-        $this->app->singleton('command.criteria.make', function()
-        {
-            return new MakeCriteriaCommand();
-        });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['command.repository.make', 'command.criteria.make'];
+        // Make criteria command.
+        $this->commands('Bosnadev\Repositories\Console\Commands\MakeCriteriaCommand');
     }
 }
