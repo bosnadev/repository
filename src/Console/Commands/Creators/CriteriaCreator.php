@@ -266,8 +266,11 @@ class CriteriaCreator {
         // Pluralized
         $pluralized = Inflector::pluralize($this->getModel());
 
+        // Uppercase first character the modelname
+        $model_name = ucfirst($pluralized);
+
         // Return the pluralized model.
-        return $pluralized;
+        return $model_name;
     }
 
 }
