@@ -97,6 +97,18 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
 
     /**
      * @param array $data
+     * @return bool
+     */
+    public function saveModel(array $data)
+    {
+        foreach ($data as $k => $v) {
+            $this->model->$k = $v;
+        }
+        return $this->model->save();
+    }
+
+    /**
+     * @param array $data
      * @param $id
      * @param string $attribute
      * @return mixed
