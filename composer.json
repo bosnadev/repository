@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "xcaptain\\Repositories\\": "src/"
+      "Bosnadev\\Repositories\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "xcaptain\\Tests\\Repositories\\": "tests/"
+      "Bosnadev\\Tests\\Repositories\\": "tests/"
     }
   },
   "extra": {
