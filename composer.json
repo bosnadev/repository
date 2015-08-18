@@ -1,5 +1,5 @@
 {
-  "name": "bosnadev/repositories",
+  "name": "xcaptain/repositories",
   "description": "Laravel Repositories",
   "keywords": [
     "laravel",
@@ -11,8 +11,8 @@
   "licence": "MIT",
   "authors": [
     {
-      "name": "Mirza Pasic",
-      "email": "mirza.pasic@edu.fit.ba"
+      "name": "Joey Xie",
+      "email": "joey.xf@gmail.com"
     }
   ],
   "require": {
@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Bosnadev\\Repositories\\": "src/"
+      "xcaptain\\Repositories\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Bosnadev\\Tests\\Repositories\\": "tests/"
+      "xcaptain\\Tests\\Repositories\\": "tests/"
     }
   },
   "extra": {
