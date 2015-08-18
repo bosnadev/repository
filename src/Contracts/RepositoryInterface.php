@@ -18,12 +18,18 @@ interface RepositoryInterface {
      * @return mixed
      */
     public function paginate($perPage = 1, $columns = array('*'));
-    
+
     /**
      * @param array $data
      * @return mixed
      */
     public function create(array $data);
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function saveModel(array $data);
 
     /**
      * @param array $data
