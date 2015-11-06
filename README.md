@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model {
 
-    protected $id = 'film_id';
+    protected $primaryKey = 'film_id';
 
     protected $table = 'film';
 
