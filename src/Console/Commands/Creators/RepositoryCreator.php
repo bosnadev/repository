@@ -170,6 +170,16 @@ class RepositoryCreator {
         return $model_name;
     }
 
+    protected function getRepositoryNamespace()
+    {
+        return Config::get('repositories.repository_namespace');
+    }
+
+    protected function getModelNamespace()
+    {
+        return Config::get('repositories.model_namespace');
+    }
+
     /**
      * Get the stripped repository name.
      *
@@ -198,13 +208,13 @@ class RepositoryCreator {
     protected function getPopulateData()
     {
         // Repository namespace.
-        $repository_namespace = Config::get('repositories.repository_namespace');
+        $repository_namespace = $this->getRepositoryNamespace();
 
         // Repository class.
         $repository_class     = $this->getRepositoryName();
 
         // Model path.
-        $model_path           = Config::get('repositories.model_namespace');
+        $model_path           = $this->getModelNamespace();
 
         // Model name.
         $model_name           = $this->getModelName();
