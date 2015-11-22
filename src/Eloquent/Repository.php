@@ -36,6 +36,12 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
     protected $skipCriteria = false;
 
     /**
+     * Prevents from overwriting same criteria in chain usage
+     * @var bool
+     */
+    protected $preventCriteriaOverwriting = true;
+
+    /**
      * @param App $app
      * @param Collection $collection
      * @throws \Bosnadev\Repositories\Exceptions\RepositoryException
@@ -263,7 +269,23 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
      * @param Criteria $criteria
      * @return $this
      */
-    public function pushCriteria(Criteria $criteria) {
+    public function pushCriteria(Criteria $criteria)
+    {
+        if ($this->preventCriteriaOverwriting)
+        {
+            // Find existing criteria
+            $key = $this->criteria->search(function($item) use ($criteria)
+            {
+                return (is_object($item) AND (get_class($item) == get_class($criteria)));
+            });
+
+            // Remove old criteria
+            if (is_int($key))
+            {
+                $this->criteria->offsetUnset($key);
+            }
+        }
+
         $this->criteria->push($criteria);
         return $this;
     }
