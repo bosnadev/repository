@@ -39,6 +39,13 @@ interface RepositoryInterface {
     public function update(array $data, $id);
 
     /**
+     * @param array $searchData
+     * @param array $saveData
+     * @return mixed
+     */
+    public function updateOrCreate(array $searchData, array $saveData = []);
+
+    /**
      * @param $id
      * @return mixed
      */
