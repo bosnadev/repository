@@ -212,6 +212,36 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
         }
         return $model->get($columns);
     }
+    
+    /**
+     * @param string|array $relations
+     * @return $this
+     */
+    public function with($relations)
+    {
+        if(is_string($relations))
+            $relations = func_get_args();
+
+        $this->model = $this->model->with($relations);
+
+        return $this;
+    }
+    
+    /**
+     * @param string|array $scopes
+     * @return $this
+     */
+    public function scopes($scopes)
+    {
+        if(is_string($scopes))
+            $scopes = func_get_args();
+        
+        foreach($scopes as $scope) {
+            $this->model = $this->model->{$scope}();
+        }
+
+        return $this;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
