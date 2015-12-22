@@ -4,7 +4,7 @@ namespace Bosnadev\Repositories\Console\Commands;
 
 use Bosnadev\Repositories\Console\Commands\Creators\RepositoryCreator;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Composer;
+use Illuminate\Support\Composer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

@@ -8,7 +8,7 @@ use Bosnadev\Repositories\Console\Commands\MakeCriteriaCommand;
 use Bosnadev\Repositories\Console\Commands\MakeRepositoryCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Filesystem\FilesystemServiceProvider;
-use Illuminate\Foundation\Composer;
+use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
 
 /**
