@@ -4,7 +4,6 @@ namespace Bosnadev\Repositories\Console\Commands;
 
 use Bosnadev\Repositories\Console\Commands\Creators\CriteriaCreator;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Composer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -41,9 +40,8 @@ class MakeCriteriaCommand extends Command
 
     /**
      * @param CriteriaCreator $creator
-     * @param Composer        $composer
      */
-    public function __construct(CriteriaCreator $creator, Composer $composer)
+    public function __construct(CriteriaCreator $creator)
     {
         parent::__construct();
 
@@ -51,7 +49,7 @@ class MakeCriteriaCommand extends Command
         $this->creator  = $creator;
 
         // Set the composer.
-        $this->composer = $composer;
+        $this->composer = app()['composer'];
     }
 
     /**

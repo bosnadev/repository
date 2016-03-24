@@ -4,7 +4,6 @@ namespace Bosnadev\Repositories\Console\Commands;
 
 use Bosnadev\Repositories\Console\Commands\Creators\RepositoryCreator;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Composer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -41,9 +40,8 @@ class MakeRepositoryCommand extends Command
 
     /**
      * @param RepositoryCreator $creator
-     * @param Composer          $composer
      */
-    public function __construct(RepositoryCreator $creator, Composer $composer)
+    public function __construct(RepositoryCreator $creator)
     {
         parent::__construct();
 
@@ -51,7 +49,7 @@ class MakeRepositoryCommand extends Command
         $this->creator  = $creator;
 
         // Set composer.
-        $this->composer = $composer;
+        $this->composer = app()['composer'];
     }
 
     /**
