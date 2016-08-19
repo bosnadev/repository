@@ -1,5 +1,8 @@
 # Laravel Repositories
 
+[![Build Status](https://travis-ci.org/Bosnadev/Repositories.svg?branch=master)](https://travis-ci.org/Bosnadev/Repositories) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f/mini.png)](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f)
+
+
 Laravel Repositories is a package for Laravel 5 which is used to abstract the database layer. This makes applications much easier to maintain.
 
 ## Installation
