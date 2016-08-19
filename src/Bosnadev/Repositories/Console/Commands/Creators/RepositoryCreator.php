@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maartenpaauw
- * Date: 05-07-15
- * Time: 14:16
- */
 
 namespace Bosnadev\Repositories\Console\Commands\Creators;
 
-use Doctrine\Common\Inflector\Inflector;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Config;
+use Doctrine\Common\Inflector\Inflector;
 
 /**
  * Class RepositoryCreator
@@ -79,6 +73,7 @@ class RepositoryCreator {
      *
      * @param $repository
      * @param $model
+     * @return int
      */
     public function create($repository, $model)
     {
@@ -257,7 +252,7 @@ class RepositoryCreator {
     protected function getStubPath()
     {
         // Stub path.
-        $stub_path = __DIR__ . '/../../../resources/stubs/';
+        $stub_path = __DIR__ . '/../../../../../../resources/stubs/';
 
         // Return the stub path.
         return $stub_path;

@@ -1,8 +1,7 @@
-<?php namespace Bosnadev\Tests\Repositories;
+<?php
 
-use Bosnadev\Repositories\Contracts\CriteriaInterface as Criteria;
-use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
-use Illuminate\Database\Eloquent\Model;
+namespace Bosnadev\Tests\Repositories;
+
 use \Mockery as m;
 use \PHPUnit_Framework_TestCase as TestCase;
 

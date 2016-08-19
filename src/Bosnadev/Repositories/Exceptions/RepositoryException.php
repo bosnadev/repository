@@ -1,4 +1,6 @@
-<?php namespace Bosnadev\Repositories\Exceptions;
+<?php
+
+namespace Bosnadev\Repositories\Exceptions;
 
 /**
  * Class RepositoryException

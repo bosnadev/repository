@@ -1,13 +1,14 @@
-<?php namespace Bosnadev\Repositories\Eloquent;
+<?php
 
-use Bosnadev\Repositories\Contracts\CriteriaInterface;
-use Bosnadev\Repositories\Criteria\Criteria;
+namespace Bosnadev\Repositories\Eloquent;
+
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Container\Container as App;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Exceptions\RepositoryException;
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Container\Container as App;
+use Bosnadev\Repositories\Contracts\CriteriaInterface;
+use Bosnadev\Repositories\Criteria\Criteria;
 
 /**
  * Class Repository
@@ -315,7 +316,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
         if ($this->preventCriteriaOverwriting) {
             // Find existing criteria
             $key = $this->criteria->search(function ($item) use ($criteria) {
-                return (is_object($item) AND (get_class($item) == get_class($criteria)));
+                return (is_object($item) && (get_class($item) == get_class($criteria)));
             });
 
             // Remove old criteria

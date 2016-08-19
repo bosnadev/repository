@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maartenpaauw
- * Date: 05-07-15
- * Time: 16:24
- */
 
 namespace Bosnadev\Repositories\Console\Commands\Creators;
 
-use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
+use Doctrine\Common\Inflector\Inflector;
 
 /**
  * Class CriteriaCreator
@@ -212,7 +206,7 @@ class CriteriaCreator {
     protected function getStubPath()
     {
         // Path
-        $path = __DIR__ . '/../../../resources/stubs/';
+        $path = __DIR__ . '/../../../../../../resources/stubs/';
 
         // Return the path.
         return $path;

@@ -2,34 +2,34 @@
 
 namespace Bosnadev\Repositories\Console\Commands;
 
-use Bosnadev\Repositories\Console\Commands\Creators\CriteriaCreator;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
+use Bosnadev\Repositories\Console\Commands\Creators\RepositoryCreator;
 
 /**
- * Class MakeCriteriaCommand
+ * Class MakeRepositoryCommand
  *
  * @package Bosnadev\Repositories\Console\Commands
  */
-class MakeCriteriaCommand extends Command
+class MakeRepositoryCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $name = 'make:criteria';
+    protected $name = 'make:repository';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new criteria class';
+    protected $description = 'Create a new repository class';
 
     /**
-     * @var
+     * @var RepositoryCreator
      */
     protected $creator;
 
@@ -39,16 +39,16 @@ class MakeCriteriaCommand extends Command
     protected $composer;
 
     /**
-     * @param CriteriaCreator $creator
+     * @param RepositoryCreator $creator
      */
-    public function __construct(CriteriaCreator $creator)
+    public function __construct(RepositoryCreator $creator)
     {
         parent::__construct();
 
         // Set the creator.
         $this->creator  = $creator;
 
-        // Set the composer.
+        // Set composer.
         $this->composer = app()['composer'];
     }
 
@@ -65,32 +65,30 @@ class MakeCriteriaCommand extends Command
         // Get the options.
         $options   = $this->option();
 
-        // Write criteria.
-        $this->writeCriteria($arguments, $options);
+        // Write repository.
+        $this->writeRepository($arguments, $options);
 
         // Dump autoload.
         $this->composer->dumpAutoloads();
     }
 
     /**
-     * Write the criteria.
-     *
      * @param $arguments
      * @param $options
      */
-    public function writeCriteria($arguments, $options)
+    protected function writeRepository($arguments, $options)
     {
-        // Set criteria.
-        $criteria = $arguments['criteria'];
+        // Set repository.
+        $repository = $arguments['repository'];
 
         // Set model.
-        $model    = $options['model'];
+        $model      = $options['model'];
 
-        // Create the criteria.
-        if($this->creator->create($criteria, $model))
+        // Create the repository.
+        if($this->creator->create($repository, $model))
         {
             // Information message.
-            $this->info("Succesfully created the criteria class.");
+            $this->info("Successfully created the repository class");
         }
     }
 
@@ -102,7 +100,7 @@ class MakeCriteriaCommand extends Command
     protected function getArguments()
     {
         return [
-            ['criteria', InputArgument::REQUIRED, 'The criteria name.']
+            ['repository', InputArgument::REQUIRED, 'The repository name.']
         ];
     }
 
