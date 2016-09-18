@@ -1,7 +1,7 @@
 # Laravel Repositories
 
 [![Build Status](https://travis-ci.org/bosnadev/repository.svg?branch=master)](https://travis-ci.org/bosnadev/repository) 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f/mini.png)](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/f39e6dc7-1364-481d-b722-8413bdc3200f.svg?style=flat)](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f)
 [![Latest Stable Version](https://poser.pugx.org/bosnadev/repositories/v/stable)](https://packagist.org/packages/bosnadev/repositories)
 [![Total Downloads](https://poser.pugx.org/bosnadev/repositories/downloads)](https://packagist.org/packages/bosnadev/repositories)
 [![Monthly Downloads](https://poser.pugx.org/bosnadev/repositories/d/monthly)](https://packagist.org/packages/bosnadev/repositories)
