@@ -245,6 +245,15 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
     }
 
     /**
+     * Returns clean entity of model
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function entity()
+    {
+        return $this->newModel;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
