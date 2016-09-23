@@ -252,6 +252,7 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
      */
     public function whereIn($attribute, array $values, $columns = ['*'])
     {
+        $this->applyCriteria();
         return $this->model->whereIn($attribute, $values)->get($columns);
     }
 
