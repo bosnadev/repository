@@ -344,4 +344,23 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
 
         return $this;
     }
+
+    /**
+     * Fill attributes data before saving.
+     *
+     * @param array $data
+     * @param $id
+     * @return mixed
+     * @throws ModelNotFoundException
+     */
+    public function fill(array $data, $id)
+    {
+        $model = $this->makeModel()->find($id);
+
+        if (! $model) {
+            throw new ModelNotFoundException("Model '" . $this->model() . "' with id ${id} not found.");
+        }
+
+        return $model->fill($data)->save();
+    }
 }
