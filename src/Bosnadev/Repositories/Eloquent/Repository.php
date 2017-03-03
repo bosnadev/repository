@@ -244,7 +244,28 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
         return $model->get($columns);
     }
 
+     /**
+      * @param $attribute
+      * @param array $values
+      * @param $columns
+      * @return mixed
+      */
+     public function whereIn($attribute, array $values, $columns = ['*'])
+     {
+         $this->applyCriteria();
+         return $this->model->whereIn($attribute, $values)->get($columns);
+     }
+ 
     /**
+      * Returns clean entity of model
+      * @return \Illuminate\Database\Eloquent\Model
+      */
+     public function entity()
+     {
+         return $this->newModel;
+     }
+ 
+     /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
