@@ -74,4 +74,11 @@ interface RepositoryInterface {
      */
     public function findWhere($where, $columns = array('*'));
 
+    /**
+     * Delete all by field and value.
+     *
+     * @param string $field
+     * @param string $value
+     */
+    public function deleteAllBy($field, $value);
 }

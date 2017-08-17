@@ -245,6 +245,17 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
     }
 
     /**
+     * @param string $field
+     * @param string $value
+     * @return boolean
+     */
+    public function deleteAllBy($field, $value)
+    {
+        $this->applyCriteria();
+        return $this->model->where($attribute, '=', $value)->delete();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
