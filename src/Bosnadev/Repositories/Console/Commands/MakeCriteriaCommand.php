@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Bosnadev\Repositories\Console\Commands\Creators\CriteriaCreator;
-
+changs in php here
 /**
  * Class MakeCriteriaCommand
  *
