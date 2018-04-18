@@ -86,6 +86,16 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
     }
 
     /**
+     * @param array $relations
+     * @return $this
+     */
+    public function withCount(array $relations)
+    {
+        $this->model = $this->model->withCount($relations);
+        return $this;
+    }
+
+    /**
      * @param  string $value
      * @param  string $key
      * @return array
