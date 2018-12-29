@@ -3,7 +3,7 @@
 namespace Bosnadev\Tests\Repositories;
 
 use \Mockery as m;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class RepositoryTest extends TestCase {
 
