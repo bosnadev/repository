@@ -245,6 +245,35 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface
     }
 
     /**
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public function findOrFail($id, $columns = array('*'))
+    {
+        $model = $this->find($id, $columns);
+        if (!$model) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException(sprintf('Nothing found for %d', $id));
+        }
+        return $model;
+    }
+
+    /**
+     * @param $attribute
+     * @param $value
+     * @param array $columns
+     * @return mixed
+     */
+    public function findByOrFail($attribute, $value, $columns = array('*'))
+    {
+        $model = $this->findBy($attribute, $value, $columns);
+        if (!$model) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException(sprintf('Nothing found for %s==%s', $attribute, $value));
+        }
+        return $model;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
