@@ -22,7 +22,8 @@
     "illuminate/console": "^5.2"
   },
   "require-dev": {
-    "mockery/mockery": "dev-master@dev"
+    "mockery/mockery": "dev-master@dev",
+    "phpunit/phpunit": "6.*"
   },
   "autoload": {
     "psr-4": {
