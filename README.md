@@ -165,7 +165,7 @@ $this->film->findWhere([
 ]);
 ```
 
-## Criteria
+##  The Criteria
 
 Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST extend the abstract ```Bosnadev\Repositories\Criteria\Criteria``` class.
 
