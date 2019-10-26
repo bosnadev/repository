@@ -1,4 +1,4 @@
-# Laravel Repositories
+# Laravel Repository
 
 [![Build Status](https://travis-ci.org/bosnadev/repository.svg?branch=master)](https://travis-ci.org/bosnadev/repository) 
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/f39e6dc7-1364-481d-b722-8413bdc3200f.svg?style=flat)](https://insight.sensiolabs.com/projects/f39e6dc7-1364-481d-b722-8413bdc3200f)
@@ -197,7 +197,7 @@ Now, inside you controller class you call pushCriteria method:
 ```php
 <?php namespace App\Http\Controllers;
 
-use App\Repositories\Criteria\Films\LengthOverTwoHours;
+use App\Repositories\Criteria\Film\LengthOverTwoHours;
 use App\Repositories\FilmsRepository as Film;
 
 class FilmsController extends Controller {
